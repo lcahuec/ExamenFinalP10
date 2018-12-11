@@ -11,7 +11,8 @@ namespace FinalP10.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CLIENTE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,14 +25,22 @@ namespace FinalP10.Models
         public string Nombre { get; set; }
         public string Empresa { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
+        [Display(Name = "Donacion $")]
         public decimal Donacion { get; set; }
+        [Display(Name = "PIB %")]
         public int Pib { get; set; }
+        [Display(Name = "Pais, Ciudad")]
         public int Ubicacion { get; set; }
+        [Display(Name = "Obsequio")]
         public int Producto { get; set; }
+        [Display(Name = "Total $")]
         public Nullable<decimal> Total { get; set; }
-    
+        
+        [Display(Name ="PIB %")]
         public virtual PIB PIB1 { get; set; }
+        [Display(Name = "Obsequio")]
         public virtual PRODUCTO PRODUCTO1 { get; set; }
+        [Display(Name = "Pais, Ciudad")]
         public virtual UBICACION UBICACION1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<REPORTE> REPORTE { get; set; }

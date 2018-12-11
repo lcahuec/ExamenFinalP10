@@ -287,6 +287,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\d1.jpg" />
     <Content Include="img\d2.png" />
+    <Content Include="img\d3.png" />
     <Content Include="Models\dollModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dollModel.edmx</DependentUpon>

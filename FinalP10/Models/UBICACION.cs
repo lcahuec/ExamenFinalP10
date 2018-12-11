@@ -11,7 +11,8 @@ namespace FinalP10.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class UBICACION
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +22,11 @@ namespace FinalP10.Models
         }
     
         public int Id { get; set; }
+        [Display(Name = "Continente")]
         public int Continente { get; set; }
+        [Display(Name = "Pais")]
         public int Pais { get; set; }
+        [Display(Name = "Ciudad")]
         public int Ciudad { get; set; }
     
         public virtual CIUDAD CIUDAD1 { get; set; }

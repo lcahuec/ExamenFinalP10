@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Ciudad_DollarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Ciudad_DollarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CIUDAD">
           <Key>
             <PropertyRef Name="Id" />
@@ -61,9 +61,9 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Servicio" Type="int" Nullable="false" />
           <Property Name="Cliente" Type="int" Nullable="false" />
-          <Property Name="IVA" Type="int" />
-          <Property Name="ISR" Type="int" />
-          <Property Name="AHORRO" Type="int" />
+          <Property Name="IVA" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ISR" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AHORRO" Type="decimal" Precision="18" Scale="2" />
           <Property Name="MESES" Type="int" />
           <Property Name="TOTAL" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
@@ -258,8 +258,7 @@
             <End Role="UBICACION" EntitySet="UBICACION" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Ciudad_DollarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -328,9 +327,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Servicio" Type="Int32" Nullable="false" />
           <Property Name="Cliente" Type="Int32" Nullable="false" />
-          <Property Name="IVA" Type="Int32" />
-          <Property Name="ISR" Type="Int32" />
-          <Property Name="AHORRO" Type="Int32" />
+          <Property Name="IVA" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ISR" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AHORRO" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="MESES" Type="Int32" />
           <Property Name="TOTAL" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="CLIENTE1" Relationship="Self.FK_REPORTE_CLIENTE" FromRole="REPORTE" ToRole="CLIENTE" />

@@ -1,7 +1,7 @@
 ﻿@model FinalP10.Models.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
 
-<h4>Use otro servicio para iniciar sesión.</h4>
+@*<h4>Use otro servicio para iniciar sesión.</h4>*@
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
@@ -19,8 +19,10 @@
             <div id="socialLoginList">
                 <p>
                     @foreach (AuthenticationDescription p in loginProviders) {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Inicie sesión con su cuenta @p.Caption">@p.AuthenticationType</button>
-                    }
+                    <center>
+                        <button type="submit" class="btn btn-success" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Inicie sesión con su cuenta @p.Caption">@p.AuthenticationType</button>
+                    </center>
+                     }
                 </p>
             </div>
         }

@@ -285,6 +285,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\d1.jpg" />
+    <Content Include="img\d2.png" />
     <Content Include="Models\dollModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dollModel.edmx</DependentUpon>

@@ -58,11 +58,11 @@ namespace FinalP10
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "872258927037-mcejvj14i1obgtahgr8e8c5tbfskvq1h.apps.googleusercontent.com",
+                ClientSecret = "mtZ75ZuzSQvozhq7vBUf-B2w"
+            });
         }
     }
 }

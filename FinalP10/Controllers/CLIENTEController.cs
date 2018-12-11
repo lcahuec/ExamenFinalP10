@@ -159,51 +159,51 @@ namespace FinalP10.Controllers
         // GET: CLIENTE/Edit/5
         public ActionResult Edit(int? id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //CLIENTE cLIENTE = db.CLIENTE.Find(id);
-            //if (cLIENTE == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //ViewBag.Pib = new SelectList(db.PIB, "Id", "Id", cLIENTE.Pib);
-            //ViewBag.Producto = new SelectList(db.PRODUCTO, "Id", "Descripcion", cLIENTE.Producto);
-            //ViewBag.Ubicacion = new SelectList(db.UBICACION, "Id", "Id", cLIENTE.Ubicacion);
-            //return View(cLIENTE);
-            CLIENTE clientes = new CLIENTE();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:52161/api/");
-
-                // Obtiene asincronamente y esepera hata obteneer la data
-                var responsetask = client.GetAsync("clienteapi/" + id);
-                responsetask.Wait();
-                var result = responsetask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    //leer todo el contenido y parsearlo a la lista
-                    var leer = result.Content.ReadAsAsync<CLIENTE>();
-                    leer.Wait();
-                    clientes = leer.Result;
-                }
-                else
-                {
-                    clientes = null;
-                    ModelState.AddModelError(string.Empty, "Error...");
-                }
-            }
-            if (clientes == null)
+            CLIENTE cLIENTE = db.CLIENTE.Find(id);
+            if (cLIENTE == null)
             {
                 return HttpNotFound();
             }
-            return View(clientes);
-        
+            ViewBag.Pib = new SelectList(db.PIB, "Id", "Id", cLIENTE.Pib);
+            ViewBag.Producto = new SelectList(db.PRODUCTO, "Id", "Descripcion", cLIENTE.Producto);
+            ViewBag.Ubicacion = new SelectList(db.UBICACION, "Id", "Id", cLIENTE.Ubicacion);
+            return View(cLIENTE);
+            //CLIENTE clientes = new CLIENTE();
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //using (var client = new HttpClient())
+            //{
+            //    client.BaseAddress = new Uri("http://localhost:52161/api/");
+
+            //    // Obtiene asincronamente y esepera hata obteneer la data
+            //    var responsetask = client.GetAsync("clienteapi/" + id);
+            //    responsetask.Wait();
+            //    var result = responsetask.Result;
+            //    if (result.IsSuccessStatusCode)
+            //    {
+            //        //leer todo el contenido y parsearlo a la lista
+            //        var leer = result.Content.ReadAsAsync<CLIENTE>();
+            //        leer.Wait();
+            //        clientes = leer.Result;
+            //    }
+            //    else
+            //    {
+            //        clientes = null;
+            //        ModelState.AddModelError(string.Empty, "Error...");
+            //    }
+            //}
+            //if (clientes == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(clientes);
+
 
         }
 
@@ -214,47 +214,57 @@ namespace FinalP10.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Nombre,Empresa,Fecha,Donacion,Pib,Ubicacion,Producto,Total")] CLIENTE cLIENTE)
         {
-        //if (ModelState.IsValid)
-        //{
-        //    db.Entry(cLIENTE).State = EntityState.Modified;
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-        //ViewBag.Pib = new SelectList(db.PIB, "Id", "Id", cLIENTE.Pib);
-        //ViewBag.Producto = new SelectList(db.PRODUCTO, "Id", "Descripcion", cLIENTE.Producto);
-        //ViewBag.Ubicacion = new SelectList(db.UBICACION, "Id", "Id", cLIENTE.Ubicacion);
-        //return View(cLIENTE);
-        if (ModelState.IsValid)
-        {
-            using (var client = new HttpClient())
+            if (ModelState.IsValid)
             {
-                client.BaseAddress = new Uri("http://localhost:52161/api/");
-                    //HTTP Post
-
-                    if (cLIENTE.Pib == 1)
-                    {
-
-                        cLIENTE.Total = ((cLIENTE.Donacion * 5) / 100);
-                    }
-                    else if (cLIENTE.Pib == 2)
-                    {
-                        cLIENTE.Total = ((cLIENTE.Donacion * 10) / 100);
-                    }
-                    cLIENTE.Fecha = DateTime.Now;
-
-                    var postTask = client.PutAsJsonAsync<CLIENTE>("clienteapi", cLIENTE);
-                postTask.Wait();
-
-                var resul = postTask.Result;
-                if (resul.IsSuccessStatusCode)
+                  if (cLIENTE.Pib == 1)
                 {
-                        return RedirectToAction("Index");
+
+                    cLIENTE.Total = ((cLIENTE.Donacion * 5) / 100);
                 }
+                else if (cLIENTE.Pib == 2)
+                {
+                    cLIENTE.Total = ((cLIENTE.Donacion * 10) / 100);
+                }
+                  cLIENTE.Fecha = DateTime.Now;
+                db.Entry(cLIENTE).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            ModelState.AddModelError(string.Empty, "Error en la insercción,favor contacte al administrador");
+            ViewBag.Pib = new SelectList(db.PIB, "Id", "Id", cLIENTE.Pib);
+            ViewBag.Producto = new SelectList(db.PRODUCTO, "Id", "Descripcion", cLIENTE.Producto);
+            ViewBag.Ubicacion = new SelectList(db.UBICACION, "Id", "Id", cLIENTE.Ubicacion);
+            return View(cLIENTE);
+            //if (ModelState.IsValid)
+            //{
+            //    using (var client = new HttpClient())
+            //    {
+            //        client.BaseAddress = new Uri("http://localhost:52161/api/");
+            //            //HTTP Post
+
+            //            if (cLIENTE.Pib == 1)
+            //            {
+
+            //                cLIENTE.Total = ((cLIENTE.Donacion * 5) / 100);
+            //            }
+            //            else if (cLIENTE.Pib == 2)
+            //            {
+            //                cLIENTE.Total = ((cLIENTE.Donacion * 10) / 100);
+            //            }
+            //            cLIENTE.Fecha = DateTime.Now;
+
+            //            var postTask = client.PutAsJsonAsync<CLIENTE>("clienteapi", cLIENTE);
+            //        postTask.Wait();
+
+            //        var resul = postTask.Result;
+            //        if (resul.IsSuccessStatusCode)
+            //        {
+            //                return RedirectToAction("Index");
+            //        }
+            //    }
+            //    ModelState.AddModelError(string.Empty, "Error en la insercción,favor contacte al administrador");
+            //}
+            //return RedirectToAction("Index");
         }
-        return RedirectToAction("Index");
-    }
 
         // GET: CLIENTE/Delete/5
         public ActionResult Delete(int? id)

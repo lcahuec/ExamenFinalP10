@@ -17,9 +17,9 @@ namespace FinalP10.Models
         public int Id { get; set; }
         public int Servicio { get; set; }
         public int Cliente { get; set; }
-        public Nullable<int> IVA { get; set; }
-        public Nullable<int> ISR { get; set; }
-        public Nullable<int> AHORRO { get; set; }
+        public Nullable<decimal> IVA { get; set; }
+        public Nullable<decimal> ISR { get; set; }
+        public Nullable<decimal> AHORRO { get; set; }
         public Nullable<int> MESES { get; set; }
         public Nullable<decimal> TOTAL { get; set; }
     

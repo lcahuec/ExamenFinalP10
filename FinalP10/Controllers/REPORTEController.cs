@@ -41,6 +41,8 @@ namespace FinalP10.Controllers
         {
             ViewBag.Cliente = new SelectList(db.CLIENTE, "Id", "Nombre");
             ViewBag.Servicio = new SelectList(db.SERVICIO, "Id", "Id");
+            ViewBag.Cliente = new SelectList(db.CLIENTE, "Id", "Total");
+
             return View();
         }
 
@@ -53,6 +55,23 @@ namespace FinalP10.Controllers
         {
             if (ModelState.IsValid)
             {
+                CLIENTE cl = new CLIENTE();
+
+                if (((cl.Total) <= 30000))
+                {
+                    rEPORTE.ISR = ((cl.Total) * 5) / 100;
+
+                }
+                else if (((cl.Total) > 30000))
+                {
+                    rEPORTE.ISR = ((cl.Total) * 7) / 100;
+
+                }
+
+                rEPORTE.IVA = ((cl.Total) * 12) / 100;
+                rEPORTE.AHORRO = ((cl.Total) * 5) / 100;
+                rEPORTE.TOTAL = ((cl.Total)-(rEPORTE.IVA)-(rEPORTE.ISR)-(rEPORTE.AHORRO)) * rEPORTE.MESES;
+
                 db.REPORTE.Add(rEPORTE);
                 db.SaveChanges();
                 return RedirectToAction("Index");
